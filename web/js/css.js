@@ -1,0 +1,1 @@
+var liobjs=document.getElementsByClassName("con_headlist")[0].children;liobjs[0].style.backgroundColor="#0099df";for(var i=0;i<liobjs.length;i++)liobjs[i].onmouseover=function(){for(var l=0;l<liobjs.length;l++)liobjs[l].className="",liobjs[l].children[0].style.color="#666";this.className="current",this.children[0].style.color="#fff"};

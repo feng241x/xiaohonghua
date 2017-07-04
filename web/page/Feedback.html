@@ -1,0 +1,82 @@
+<!DOCTYPE html><html><head lang="en"><meta charset="UTF-8"><title></title><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/Feedback.css"><script src="../js/jquery-3.2.1.js"></script><script>$(function(){
+//             获得焦点事件
+          $(".phone>input").focus(function aa(){
+              $(".phone").children("span").remove();
+           $(this).removeAttr("placeholder").css({"border":"1px solid skyblue","border-radius":"1px"});
+          })
+//             失去焦点事件
+             $(".phone>input").blur(function(){
+                 $val=$(this).val();
+                 $reg=/^1[0-9]{10}$/
+                 if($val.length==0){
+                     $(this).attr("placeholder","留下有效的联系方式以便快速解决问题").css("border","1px solid #ccc");
+                 }else{
+                     if($val.length==11&&$reg.test($val)){
+                         $("<span>格式正确<span>").css({"marginleft":5,"color":"green"}).appendTo(".phone");
+                         $(this).css({"border":"1px solid #ccc","background-color":"white"})
+                         $(this).attr("disabled","disabled");
+                     }else{
+                         $("<span>格式错误，重新输入<span>").css({"marginleft":5,"color":"red"}).appendTo(".phone");
+                         $(this).css({"border":"1px solid #ccc","background-color":"white"})
+                         $(this).val(null);
+                     }
+                 }
+
+             })
+//             验证码区域
+             $(".code").children(".code2").attr("disabled","disabled");
+             var arr=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R', 'S','T','U','V','W','X','Y','Z'];
+             var colorArr=["red","green","blue","purple","black","wine","rainbow","Citrine"]
+             var length=4;
+             var a="";
+             for(var i =0; i < length; i++){
+                 var index = Math.floor(Math.random()*26);
+                 $(".code").children(".code2").val(a+=arr[index]);
+             };
+             for(var j =0; j < length; j++){
+                 var b="";
+                  var colorindex=Math.floor(Math.random()*8);
+                 var codelength=$(".code").children(".code2").val().length;
+                 $(".code").children(".code2").css("color",b+=colorArr[colorindex]);
+             };
+
+             $(".code").children("a").click(function(){
+                 var arr=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R', 'S','T','U','V','W','X','Y','Z'];
+                 var length=4;
+                 var a="";
+                 for(var i =0; i < length; i++){
+                     var index = Math.floor(Math.random()*26);
+                     $(".code").children(".code2").val(a+=arr[index]);
+                 };
+                 for(var j =0; j < length; j++){
+                     var b="";
+                     var colorindex=Math.floor(Math.random()*8);
+                     $(".code").children(".code2").css("color",b+=colorArr[colorindex]);
+                 };
+             })
+
+             $(".code").children(".code1").blur(function(){
+                 if($(this).val().length==0){
+                     $(".code").children(".answer").html("格式错误，请重新输入").css("color","red");
+                 }else{
+                     var change=$(this).val().toUpperCase()
+                     if(change==$(".code").children(".code2").val()){
+                         $(this).attr("disabled","disabled")
+                         $(this).val(change)
+                         $(".code").children(".answer").html("正确").css("color","green");
+                     }else{
+                         $(".code").children(".answer").html("错误，请重新输入").css("color","red");
+                         $(this).val(null);
+                     };
+                 }
+             })
+             $(".code").children(".code1").focus(function(){
+                 $(".code").children(".answer").html(null)
+                 $(this).css({"border":"1px solid skyblue","border-radius":"1px"});
+             })
+
+             $(".title #close").click(function(){
+                 $(".main").css("display","none");
+             })
+         })</script></head><body><div class="main"><div class="big"><div class="title"><p class="fl">宜人贷意见反馈</p><a href="#" class="fr" id="close"><img src="../images/aclose_bg.png"></a></div><div class="body"><div class="choose">选择类型&nbsp;&nbsp;<select><option>=请选择类型=</option><option>建议</option><option>投诉</option><option>意见</option><option>其他</option></select><br></div><div class="content"><div class="login"><span>温馨提示：请登录后尝试提交意见反馈,</span> <a href="">立即登录</a></div><label class="one fl">意见内容</label><textarea cols="55" rows="12" class="fr" disabled="disabled">
+           </textarea></div><div class="phone">联系方式 <input type="text" placeholder="留下有效的联系方式以便快速解决问题"></div><div class="code">验证码&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="code1"> <input type="text" class="code2"> <a href="javascript:void(0)">换一张</a><p class="answer"></p></div><div class="submit"><input type="button" value="提交意见"></div></div></div><div class="footer"></div></div></body></html>

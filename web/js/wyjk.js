@@ -1,0 +1,1 @@
+for(var ljsq=document.getElementsByClassName("click"),i=0;i<ljsq.length;i++)ljsq[i].onmouseover=function(){animate(this.nextElementSibling,{opacity:1})},ljsq[i].onmouseleave=function(){animate(this.nextElementSibling,{opacity:0})};
